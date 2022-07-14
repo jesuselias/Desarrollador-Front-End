@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { EmitIndicatorService } from 'src/app/services/emit-indicator.service';
 import { Indicators } from '../../interfaces/indicators';
 
 @Component({
@@ -10,7 +12,7 @@ export class IndicatorsComponent implements OnInit {
 
   indicators: Indicators[] = [];
 
-  constructor() { }
+  constructor(private router: Router, private serviceEmitIndicator:EmitIndicatorService) { }
 
   ngOnInit(): void {
     this.indicators = 
@@ -33,4 +35,31 @@ export class IndicatorsComponent implements OnInit {
     ]
   }
 
+  valuesIndicators(name:any){
+    console.log('name',name)
+    setTimeout(()=>{
+    this.serviceEmitIndicator.dispatchertIndicators.emit(
+      {
+        'name': name
+      }
+    )
+   
+  })
+  this.router.navigate(['/valuesIndicator'])
+  }
+
+  detailsIdicator(name:any){
+    console.log('name',name)
+    setTimeout(()=>{
+    this.serviceEmitIndicator.dispatchertIndicators.emit(
+      {
+        'name': name
+      }
+    )
+   
+  })
+  this.router.navigate(['/detailsIndicator'])
+  }
+
 }
+

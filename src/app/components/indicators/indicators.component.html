@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                 <ul class="navbar-nav">
                     <li>
-                        <a class="nav-link" href="">Detalles</a>
+                        <a class="nav-link" href="">Bienvenido</a>
                     </li>
                 </ul>
             </div>                  
@@ -36,10 +36,10 @@
                     <tbody>
                       <tr *ngFor="let data of indicators;let i = index">
                         <td class="size">
-                            <a href="">{{data.name}}</a>
+                            <button (click)="valuesIndicators(data.name)" class="btnInfo btn-sm btn-2" >{{data.name}}</button>
                         </td>
                         <div class="btnInfo_container">
-                            <button  class="btnInfo btn-sm btn-2" ><img class="imgInfo"  src="../../../assets/info.png" ></button>
+                            <button (click)="detailsIdicator(data.name)" class="btnInfo btn-sm btn-2" ><img class="imgInfo"  src="../../../assets/info.png" ></button>
                         </div>
                       </tr>
                     </tbody>

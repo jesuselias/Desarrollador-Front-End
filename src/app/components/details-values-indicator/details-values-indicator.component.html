@@ -1,1 +1,39 @@
-<p>details-values-indicator works!</p>
+<header class="container-header">
+    <br>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <button class="btnIn btn-sm btn-2" routerLink='/indicators'>
+                <img class="imgBack"  src="../../../assets/back.png" >
+            </button>
+          </div>
+          <div class="col">
+            <h3 class="text-black h4">{{this.indicators}}</h3> 
+          </div>
+        </div>
+    </div>
+    <br>
+</header>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Valor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of this.dolares;let i = index">
+                        <td class="size">{{data.Fecha}}</td>
+                        <td class="size">{{data.Valor}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</main>
+
