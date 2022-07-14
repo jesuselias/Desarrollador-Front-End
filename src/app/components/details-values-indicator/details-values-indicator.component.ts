@@ -51,16 +51,6 @@ export class DetailsValuesIndicatorComponent implements OnInit{
     this.indicatorsService.getIndicatorEuro()
       .subscribe( (resp:any) => {
         this.dolares = resp.Euros;
-
-        // this.node.sort((a, b) => {
-        //   const date1 = new Date(a.created_at);
-        //   const date2 = new Date(b.created_at);
-        //   if (date1 > date2) {return -1;}
-        //   if (date1 < date2) {return 1;}
-        //   return 0;
-
-  
-        // });
       })
 
     
@@ -71,18 +61,6 @@ export class DetailsValuesIndicatorComponent implements OnInit{
     this.indicatorsService.getIndicatorIPC()
       .subscribe( (resp:any) => {
         this.dolares = resp.IPCs;
-        console.log(this.dolares)
-        // console.log(resp);
-        // console.log(this.node);
-        // this.node.sort((a, b) => {
-        //   const date1 = new Date(a.created_at);
-        //   const date2 = new Date(b.created_at);
-        //   if (date1 > date2) {return -1;}
-        //   if (date1 < date2) {return 1;}
-        //   return 0;
-
-  
-        // });
       })
 
     
@@ -93,17 +71,6 @@ export class DetailsValuesIndicatorComponent implements OnInit{
     this.indicatorsService.getIndicatorUF()
       .subscribe( (resp:any) => {
         this.dolares = resp.UFs;
-        // console.log(resp);
-        // console.log(this.node);
-        // this.node.sort((a, b) => {
-        //   const date1 = new Date(a.created_at);
-        //   const date2 = new Date(b.created_at);
-        //   if (date1 > date2) {return -1;}
-        //   if (date1 < date2) {return 1;}
-        //   return 0;
-
-  
-        // });
       })
 
     
@@ -114,18 +81,6 @@ export class DetailsValuesIndicatorComponent implements OnInit{
     this.indicatorsService.getIndicatorUTM()
       .subscribe( (resp:any) => {
         this.dolares = resp.UTMs;
-        console.log(this.dolares)
-        // console.log(resp);
-        // console.log(this.node);
-        // this.node.sort((a, b) => {
-        //   const date1 = new Date(a.created_at);
-        //   const date2 = new Date(b.created_at);
-        //   if (date1 > date2) {return -1;}
-        //   if (date1 < date2) {return 1;}
-        //   return 0;
-
-  
-        // });
       })
 
     

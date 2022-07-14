@@ -29,31 +29,31 @@ export class IndicatorsService {
  
   getIndicatorDolar(): Observable<any> {
 
-    return this.http.get(this.BASE_URL_API + "/dolar", {params: this.params1});
+    return this.http.get(this.BASE_URL_API + "/dolar/periodo/2022/07/dias_i/04/2022/07/dias_f/14", {params: this.params1});
     
   }
 
   getIndicatorEuro(): Observable<any> {
 
-    return this.http.get(this.BASE_URL_API + "/euro", {params: this.params1});
-    
-  }
-
-  getIndicatorIPC(): Observable<any> {
-
-    return this.http.get(this.BASE_URL_API + "/ipc", {params: this.params1});
+    return this.http.get(this.BASE_URL_API + "/euro/periodo/2022/07/dias_i/04/2022/07/dias_f/14", {params: this.params1});
     
   }
 
   getIndicatorUF(): Observable<any> {
 
-    return this.http.get(this.BASE_URL_API + "/uf", {params: this.params2});
+    return this.http.get(this.BASE_URL_API + "/uf/periodo/2022/07/dias_i/04/2022/07/dias_f/14", {params: this.params2});
+    
+  }
+
+  getIndicatorIPC(): Observable<any> {
+
+    return this.http.get(this.BASE_URL_API + "/ipc/periodo/2021/07/2022/07", {params: this.params1});
     
   }
 
   getIndicatorUTM(): Observable<any> {
 
-    return this.http.get(this.BASE_URL_API + "/utm", {params: this.params2});
+    return this.http.get(this.BASE_URL_API + "/utm/periodo/2021/07/2022/07", {params: this.params2});
     
   }
 

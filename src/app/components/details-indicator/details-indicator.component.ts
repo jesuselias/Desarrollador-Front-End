@@ -25,8 +25,6 @@ export class DetailsIndicatorComponent implements OnInit {
   fechaG:any;
 
   chart: any = []
-
-  data = [ 100,10, 200.90, 80, 81, 56, 0.9, 40 ]
   
   constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { 
     Chart.register(...registerables)
@@ -65,13 +63,14 @@ export class DetailsIndicatorComponent implements OnInit {
     this.indicatorsService.getIndicatorDolar()
       .subscribe( (resp:any) => {
         this.dolares = resp.Dolares;
+        
         this.dolares.forEach((data:any)=>{
           this.valor = data.Valor
           this.fecha = data.Fecha
         }
       )
         this.valorG = this.dolares.map((data:any)=>
-          data.Valor
+          parseFloat(data.Valor)
         )
         this.fechaG = this.dolares.map((data:any)=>
           data.Fecha
@@ -121,7 +120,7 @@ export class DetailsIndicatorComponent implements OnInit {
         }
       )
       this.valorG = this.dolares.map((data:any)=>
-          data.Valor
+          parseFloat(data.Valor)
         )
         this.fechaG = this.dolares.map((data:any)=>
           data.Fecha
@@ -170,7 +169,7 @@ export class DetailsIndicatorComponent implements OnInit {
         }
       )
       this.valorG = this.dolares.map((data:any)=>
-          data.Valor
+          parseFloat(data.Valor)
         )
         this.fechaG = this.dolares.map((data:any)=>
           data.Fecha
@@ -219,7 +218,7 @@ export class DetailsIndicatorComponent implements OnInit {
         }
       )
       this.valorG = this.dolares.map((data:any)=>
-          data.Valor
+          parseFloat(data.Valor)
         )
         this.fechaG = this.dolares.map((data:any)=>
           data.Fecha
@@ -268,7 +267,7 @@ export class DetailsIndicatorComponent implements OnInit {
         }
       )
       this.valorG = this.dolares.map((data:any)=>
-          data.Valor
+          parseFloat(data.Valor)
         )
         this.fechaG = this.dolares.map((data:any)=>
           data.Fecha

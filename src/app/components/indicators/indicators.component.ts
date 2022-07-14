@@ -24,10 +24,10 @@ export class IndicatorsComponent implements OnInit {
         name: 'Euro'
       },
       {
-        name: 'IPC'
+        name: 'UF'
       },
       {
-        name: 'UF'
+        name: 'IPC'
       },
       {
         name: 'UTM'
@@ -36,7 +36,6 @@ export class IndicatorsComponent implements OnInit {
   }
 
   valuesIndicators(name:any){
-    console.log('name',name)
     setTimeout(()=>{
     this.serviceEmitIndicator.dispatchertIndicators.emit(
       {
@@ -49,7 +48,6 @@ export class IndicatorsComponent implements OnInit {
   }
 
   detailsIdicator(name:any){
-    console.log('name',name)
     setTimeout(()=>{
     this.serviceEmitIndicator.dispatchertIndicators.emit(
       {
