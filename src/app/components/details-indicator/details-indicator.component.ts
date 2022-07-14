@@ -3,8 +3,8 @@ import { Dolares } from 'src/app/interfaces/Dolares';
 import { Indicators } from 'src/app/interfaces/indicators';
 import { EmitIndicatorService } from 'src/app/services/emit-indicator.service';
 import { IndicatorsService } from 'src/app/services/indicators.service';
-import { ChartDataset } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { ChartConfiguration, ChartOptions, ChartType, Chart, registerables } from "chart.js";
 
 
 @Component({
@@ -18,45 +18,19 @@ export class DetailsIndicatorComponent implements OnInit {
   indicators: Indicators[] = [];
   valor:any;
   codigo:any;
-  fecha:any
-  simbolo:any
+  fecha:any;
+  simbolo:any;
 
-  public lineChartData: Array<any> = [
-    15, 20, 19, 18, 0, 10, 11, 12
-  ];
+  valorG:any;
+  fechaG:any;
 
-  public lineChartLabels: Array<any> = ['100,0', '200', '300'];
+  chart: any = []
 
-  public lineChartOptions: any = {
-    responsive: true,
-    scales : {
-    yAxes: [{
-       ticks: {
-        //  steps : 25,
-        //  stepValue : 15,
-        //  max : 40,
-          min : 0,
-        }
-    }] 
+  data = [ 100,10, 200.90, 80, 81, 56, 0.9, 40 ]
+  
+  constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { 
+    Chart.register(...registerables)
   }
-  };
-
-  lineChartLegend=true;
-  lineChartPlugins=[]
-  public lineChartType = 'line';
-
-  public lineChartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-
-  constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { }
 
   ngOnInit(): void {
     this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
@@ -96,7 +70,44 @@ export class DetailsIndicatorComponent implements OnInit {
           this.fecha = data.Fecha
         }
       )
+        this.valorG = this.dolares.map((data:any)=>
+          data.Valor
+        )
+        this.fechaG = this.dolares.map((data:any)=>
+          data.Fecha
+        )
+  
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
+
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        if (this.chart) {
+         
+        this.chart = new Chart('canvas', {
+          type: 'line',
+          data: {
+              labels: this.fechaG,
+              datasets: [{
+                  data: this.valorG,
+                  label: 'Grafica:',
+                  fill: true,
+                  tension: 0.5,
+                  borderColor: 'black',
+                  backgroundColor: 'rgb(135, 198, 223)'
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+        });
+      }
     })
+    
   }
 
   getIndicatorEuro(){
@@ -104,9 +115,48 @@ export class DetailsIndicatorComponent implements OnInit {
     this.indicatorsService.getIndicatorEuro()
       .subscribe( (resp:any) => {
         this.dolares = resp.Euros;
-      })
+        this.dolares.forEach((data:any)=>{
+          this.valor = data.Valor
+          this.fecha = data.Fecha
+        }
+      )
+      this.valorG = this.dolares.map((data:any)=>
+          data.Valor
+        )
+        this.fechaG = this.dolares.map((data:any)=>
+          data.Fecha
+        )
+        
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
 
-    
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        if (this.chart) {
+         
+        this.chart = new Chart('canvas', {
+          type: 'line',
+          data: {
+              labels: this.fechaG,
+              datasets: [{
+                  data: this.valorG,
+                  label: 'Grafica:',
+                  fill: true,
+                  tension: 0.5,
+                  borderColor: 'black',
+                  backgroundColor: 'rgb(135, 198, 223)'
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+        });
+      }
+    })
   }
 
   getIndicatorIPC(){
@@ -114,10 +164,48 @@ export class DetailsIndicatorComponent implements OnInit {
     this.indicatorsService.getIndicatorIPC()
       .subscribe( (resp:any) => {
         this.dolares = resp.IPCs;
+        this.dolares.forEach((data:any)=>{
+          this.valor = data.Valor
+          this.fecha = data.Fecha
+        }
+      )
+      this.valorG = this.dolares.map((data:any)=>
+          data.Valor
+        )
+        this.fechaG = this.dolares.map((data:any)=>
+          data.Fecha
+        )
+        
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
 
-      })
-
-    
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        if (this.chart) {
+         
+        this.chart = new Chart('canvas', {
+          type: 'line',
+          data: {
+              labels: this.fechaG,
+              datasets: [{
+                  data: this.valorG,
+                  label: 'Grafica:',
+                  fill: true,
+                  tension: 0.5,
+                  borderColor: 'black',
+                  backgroundColor: 'rgb(135, 198, 223)'
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+        });
+      }
+    })
   }
 
   getIndicatorUF(){
@@ -125,9 +213,48 @@ export class DetailsIndicatorComponent implements OnInit {
     this.indicatorsService.getIndicatorUF()
       .subscribe( (resp:any) => {
         this.dolares = resp.UFs;
-      })
+        this.dolares.forEach((data:any)=>{
+          this.valor = data.Valor
+          this.fecha = data.Fecha
+        }
+      )
+      this.valorG = this.dolares.map((data:any)=>
+          data.Valor
+        )
+        this.fechaG = this.dolares.map((data:any)=>
+          data.Fecha
+        )
+        
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
 
-    
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        if (this.chart) {
+         
+        this.chart = new Chart('canvas', {
+          type: 'line',
+          data: {
+              labels: this.fechaG,
+              datasets: [{
+                  data: this.valorG,
+                  label: 'Grafica:',
+                  fill: true,
+                  tension: 0.5,
+                  borderColor: 'black',
+                  backgroundColor: 'rgb(135, 198, 223)'
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+        });
+      }
+    }) 
   }
 
   getIndicatorUTM(){
@@ -135,8 +262,86 @@ export class DetailsIndicatorComponent implements OnInit {
     this.indicatorsService.getIndicatorUTM()
       .subscribe( (resp:any) => {
         this.dolares = resp.UTMs;
-      })
+        this.dolares.forEach((data:any)=>{
+          this.valor = data.Valor
+          this.fecha = data.Fecha
+        }
+      )
+      this.valorG = this.dolares.map((data:any)=>
+          data.Valor
+        )
+        this.fechaG = this.dolares.map((data:any)=>
+          data.Fecha
+        )
+        
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
 
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        if (this.chart) {
+         
+        this.chart = new Chart('canvas', {
+          type: 'line',
+          data: {
+              labels: this.fechaG,
+              datasets: [{
+                  data: this.valorG,
+                  label: 'Grafica:',
+                  fill: true,
+                  tension: 0.5,
+                  borderColor: 'black',
+                  backgroundColor: 'rgb(135, 198, 223)'
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+        });
+      }
+    })
   }
+
+  // public lineChartData: ChartConfiguration<'line'>['data'] = {
+  //   labels: [
+  //     '12-07-2022',
+  //     '12-07-2022',
+  //     '30-04-2022',
+  //     '14-07-2022',
+  //     '01-07-2022',
+  //     '03-07-2022',
+  //     '10-07-2022'
+  //   ],
+  //   datasets: [
+  //     {
+  //       data: this.data,
+  //       label: 'Grafica:',
+  //       fill: true,
+  //       tension: 0.5,
+  //       borderColor: 'black',
+  //       backgroundColor: 'rgb(135, 198, 223)'
+  //     }
+  //   ]
+  // };
+  // public lineChartOptions: ChartOptions<'line'> = {
+  //   responsive: true
+  // };
+  // public lineChartLegend = true;
+
+  
+  // public lineChartColors: Array<any> = [
+  //   { // grey
+  //     backgroundColor: 'rgb(135, 198, 223)',
+  //     borderColor: 'rgb(135, 198, 223)',
+  //     pointBackgroundColor: 'rgb(135, 198, 223)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgb(135, 198, 223)'
+  //   }
+  // ];
 
 }
