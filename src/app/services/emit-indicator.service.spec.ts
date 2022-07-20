@@ -12,5 +12,7 @@ describe('EmitIndicatorService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    const testData = 'service emit-indicators'
+    expect(service.test).toEqual(testData)
   });
 });

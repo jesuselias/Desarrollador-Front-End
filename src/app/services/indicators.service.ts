@@ -23,7 +23,10 @@ export class IndicatorsService {
     Month: '07',
   }
 
-  constructor(public http: HttpClient) { 
+  test:any;
+
+  constructor(public http: HttpClient) {
+    this.test='service indicators' 
     this.BASE_URL_API = environment.apiUrl;
   }
  

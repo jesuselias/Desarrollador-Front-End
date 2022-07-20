@@ -36,10 +36,10 @@
                     <tbody>
                       <tr *ngFor="let data of indicators;let i = index">
                         <td class="size">
-                            <button (click)="valuesIndicators(data.name)" class="btnInfo btn-sm btn-2" >{{data.name}}</button>
+                            <button (click)="valuesIndicators(data.name)" class="btnInValues btn-sm btn-2" >{{data.name}}</button>
                         </td>
                         <div class="btnInfo_container">
-                            <button (click)="detailsIdicator(data.name)" class="btnInfo btn-sm btn-2" ><img class="imgInfo"  src="../../../assets/info.png" ></button>
+                            <button (click)="detailsIdicator(data.name)" class="btnInDetails btn-sm btn-2" ><img class="imgInfo"  src="../../../assets/info.png" ></button>
                         </div>
                       </tr>
                     </tbody>

@@ -11,6 +11,7 @@ import { Indicators } from '../../interfaces/indicators';
 export class IndicatorsComponent implements OnInit {
 
   indicators: Indicators[] = [];
+  test:any;
 
   constructor(private router: Router, private serviceEmitIndicator:EmitIndicatorService) { }
 
@@ -36,6 +37,7 @@ export class IndicatorsComponent implements OnInit {
   }
 
   valuesIndicators(name:any){
+    this.test = 'fine values'
     setTimeout(()=>{
     this.serviceEmitIndicator.dispatchertIndicators.emit(
       {
@@ -48,6 +50,7 @@ export class IndicatorsComponent implements OnInit {
   }
 
   detailsIdicator(name:any){
+    this.test = 'fine details'
     setTimeout(()=>{
     this.serviceEmitIndicator.dispatchertIndicators.emit(
       {

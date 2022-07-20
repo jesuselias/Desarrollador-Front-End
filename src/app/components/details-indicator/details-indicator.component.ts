@@ -24,13 +24,16 @@ export class DetailsIndicatorComponent implements OnInit {
   valorG:any;
   fechaG:any;
 
-  chart: any = []
-  
+  chart: any = [];
+
+  test:any;
+
   constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { 
     Chart.register(...registerables)
   }
 
   ngOnInit(): void {
+    this.test = 'Indicators'
     this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
       this.indicators= data.name
       if(data.name === 'Dólar'){
@@ -77,10 +80,11 @@ export class DetailsIndicatorComponent implements OnInit {
         )
   
         let chartStatus = Chart.getChart("canvas"); // <canvas> id
-
+        
         if (chartStatus != undefined) {
           chartStatus.destroy();
-        }
+        } 
+        
         if (this.chart) {
          
         this.chart = new Chart('canvas', {

@@ -23,7 +23,10 @@ export class ValuesIndicatorsService {
     Year: '2022'
   }
 
-  constructor(public http: HttpClient) { 
+  test:any;
+
+  constructor(public http: HttpClient) {
+    this.test='service values-indicators' 
     this.BASE_URL_API = environment.apiUrl;
   }
  

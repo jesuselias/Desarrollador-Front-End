@@ -6,7 +6,12 @@
     width: 90%;
 }
 
-.btnInfo {
+.btnInDetails {
+    border: none;
+    background: none;
+}
+
+.btnInValues {
     border: none;
     background: none;
 }

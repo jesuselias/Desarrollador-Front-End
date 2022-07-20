@@ -5,6 +5,10 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 })
 export class EmitIndicatorService {
 
+  test:any;
+
   @Output() dispatchertIndicators = new EventEmitter();
-  constructor() { }
+  constructor() { 
+    this.test='service emit-indicators'
+  }
 }

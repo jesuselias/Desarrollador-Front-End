@@ -13,11 +13,12 @@ export class DetailsValuesIndicatorComponent implements OnInit{
 
   dolares: Dolares[] = [];
   indicators: Indicators[] = [];
+  test:any;
 
   constructor(public indicatorsService: ValuesIndicatorsService, private serviceEmitIndicator:EmitIndicatorService) {}
 
   ngOnInit(): void {
-    
+    this.test = 'Indicators'
     this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
     this.indicators= data.name
     if(data.name === 'Dólar'){
@@ -39,7 +40,7 @@ export class DetailsValuesIndicatorComponent implements OnInit{
   }
 
   getIndicatorDolar(){
-    
+    this.test = 'Dólar'
     this.indicatorsService.getIndicatorDolar()
       .subscribe( (resp:any) => {
         this.dolares = resp.Dolares;
