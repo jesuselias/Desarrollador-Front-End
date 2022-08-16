@@ -28,13 +28,15 @@ export class DetailsIndicatorComponent implements OnInit {
 
   test:any;
 
+  subscription: any;
+
   constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { 
     Chart.register(...registerables)
   }
 
   ngOnInit(): void {
     this.test = 'Indicators'
-    this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
+    this.subscription = this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
       this.indicators= data.name
       if(data.name === 'Dólar'){
         this.getIndicatorDolar();
@@ -59,6 +61,10 @@ export class DetailsIndicatorComponent implements OnInit {
           this.codigo = 'UTM'
         }
       })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getIndicatorDolar(){

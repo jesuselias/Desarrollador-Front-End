@@ -14,12 +14,13 @@ export class DetailsValuesIndicatorComponent implements OnInit{
   dolares: Dolares[] = [];
   indicators: Indicators[] = [];
   test:any;
+  subscription: any;
 
   constructor(public indicatorsService: ValuesIndicatorsService, private serviceEmitIndicator:EmitIndicatorService) {}
 
   ngOnInit(): void {
     this.test = 'Indicators'
-    this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
+    this.subscription = this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
     this.indicators= data.name
     if(data.name === 'Dólar'){
       this.getIndicatorDolar();
@@ -37,6 +38,10 @@ export class DetailsValuesIndicatorComponent implements OnInit{
         this.getIndicatorUTM();
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getIndicatorDolar(){
@@ -86,5 +91,7 @@ export class DetailsValuesIndicatorComponent implements OnInit{
 
     
   }
+
+  
 
 }
