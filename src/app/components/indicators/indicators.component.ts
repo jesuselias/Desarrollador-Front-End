@@ -46,7 +46,7 @@ export class IndicatorsComponent implements OnInit {
     )
    
   })
-  this.router.navigate(['/valuesIndicator'])
+  this.router.navigate(['/valuesIndicator',name])
   }
 
   detailsIdicator(name:any){
@@ -59,7 +59,7 @@ export class IndicatorsComponent implements OnInit {
     )
    
   })
-  this.router.navigate(['/detailsIndicator'])
+  this.router.navigate(['/detailsIndicator',name])
   }
 
 }

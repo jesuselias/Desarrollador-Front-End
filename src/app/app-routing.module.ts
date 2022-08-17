@@ -10,11 +10,11 @@ const routes: Routes = [
     component: IndicatorsComponent
   },
   {
-    path: 'valuesIndicator',
+    path: 'valuesIndicator/:name',
     component: DetailsValuesIndicatorComponent
   },
   {
-    path: 'detailsIndicator',
+    path: 'detailsIndicator/:name',
     component: DetailsIndicatorComponent
   },
   {

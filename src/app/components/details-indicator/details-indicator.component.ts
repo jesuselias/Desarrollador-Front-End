@@ -5,6 +5,7 @@ import { EmitIndicatorService } from 'src/app/services/emit-indicator.service';
 import { IndicatorsService } from 'src/app/services/indicators.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions, ChartType, Chart, registerables } from "chart.js";
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -30,42 +31,70 @@ export class DetailsIndicatorComponent implements OnInit {
 
   subscription: any;
 
-  constructor(public indicatorsService: IndicatorsService,private serviceEmitIndicator:EmitIndicatorService) { 
+  constructor(public indicatorsService: IndicatorsService,
+    private serviceEmitIndicator:EmitIndicatorService,
+    private activateRoute:ActivatedRoute
+  ) { 
     Chart.register(...registerables)
   }
 
   ngOnInit(): void {
     this.test = 'Indicators'
-    this.subscription = this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
-      this.indicators= data.name
-      if(data.name === 'Dólar'){
+    this.activateRoute.params.subscribe(params =>{
+      this.indicators= params.name
+      if(params.name === 'Dólar'){
         this.getIndicatorDolar();
         this.codigo = 'USD'
         this.simbolo = '$'
       }else 
-        if(data.name === 'Euro'){
+        if(params.name === 'Euro'){
           this.getIndicatorEuro();
           this.codigo = 'EUR'
           this.simbolo = '€'
       }else 
-        if(data.name === 'IPC'){
+        if(params.name === 'IPC'){
           this.getIndicatorIPC();
           this.codigo = 'IPC'
         }else
-        if(data.name === 'UF'){
+        if(params.name === 'UF'){
           this.getIndicatorUF();
           this.codigo = 'UF'
         }else
-        if(data.name === 'UTM'){
+        if(params.name === 'UTM'){
           this.getIndicatorUTM();
           this.codigo = 'UTM'
         }
-      })
+    })
+    // this.subscription = this.serviceEmitIndicator.dispatchertIndicators.subscribe((data:any) =>{
+    //   this.indicators= data.name
+    //   if(data.name === 'Dólar'){
+    //     this.getIndicatorDolar();
+    //     this.codigo = 'USD'
+    //     this.simbolo = '$'
+    //   }else 
+    //     if(data.name === 'Euro'){
+    //       this.getIndicatorEuro();
+    //       this.codigo = 'EUR'
+    //       this.simbolo = '€'
+    //   }else 
+    //     if(data.name === 'IPC'){
+    //       this.getIndicatorIPC();
+    //       this.codigo = 'IPC'
+    //     }else
+    //     if(data.name === 'UF'){
+    //       this.getIndicatorUF();
+    //       this.codigo = 'UF'
+    //     }else
+    //     if(data.name === 'UTM'){
+    //       this.getIndicatorUTM();
+    //       this.codigo = 'UTM'
+    //     }
+    //   })
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
   getIndicatorDolar(){
     
